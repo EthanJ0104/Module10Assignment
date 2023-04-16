@@ -35,7 +35,7 @@ try
             Console.WriteLine();
         }
 
-        if (choice == "2")
+        else if (choice == "2")
         {
             // Create and save a new Blog
             Console.Write("Enter a name for a new Blog: ");
@@ -46,6 +46,38 @@ try
             
             db.AddBlog(blog);
             logger.Info("Blog added - {name}", name);
+        }
+
+        else if (choice == "3")
+        {
+            var query = db.Blogs.OrderBy(b => b.Name);
+
+            foreach (var item in query)
+            {
+                Console.WriteLine(item.Name);
+            }
+            
+            Console.Write("Enter Blog to post under: ");
+            var blog = Console.ReadLine();
+
+            Console.Write("Post title: ");
+            var title = Console.ReadLine();
+
+            Console.Write("Post content: ");
+            var content = Console.ReadLine();
+
+            var post = new Post { Title = title, Content = content };
+            db.AddPost(post);
+        }
+
+        else if (choice == "4")
+        {
+
+        }
+
+        else 
+        {
+            Console.WriteLine("Invalid Input");
         }
     } while (choice != "q");
 }
