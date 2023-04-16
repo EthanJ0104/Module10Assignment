@@ -72,7 +72,14 @@ try
 
         else if (choice == "4")
         {
+            var query = db.Posts.OrderBy(b => b.Title);
 
+            Console.WriteLine("All posts in the database:");
+            foreach (var item in query)
+            {
+                Console.WriteLine(item.Title);
+            }
+            Console.WriteLine();
         }
 
         else 
